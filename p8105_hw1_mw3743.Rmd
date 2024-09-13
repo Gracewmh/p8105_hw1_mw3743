@@ -8,9 +8,11 @@ Date: 2024-09-12
 The purpose of this file is to complete the questions in [howework 1](https://p8105.com/homework_1.html).
 
 # Problem 1
+
 ## 1.1 Describe the `penguins` dataset
 Write a short description of the penguins dataset using inline R code.<br> 
 ```{r}
+
 # Input data
 data("penguins", package = "palmerpenguins")
 
@@ -23,7 +25,9 @@ ncol(penguins)
 
 # Acquire the mean flipper length
 mean(penguins$flipper_length_mm, na.rm = TRUE)
+
 ```
+
 **Description of the `penguins` dataset**
 - The penguins dataset consists of 344 rows and 8 columns. It contains data from penguins of three species, which are Adelie, Chinstrap, and Gentoo. Some important variables in the data are species, island(Biscoe, Dream, or Torgersen), bill_length_mm, bill_depth_mm, flipper_length_mm, body_mass_g, sex, year. The size of the penguins dataset is 344 rows and 8 columns. Additionally, the mean flipper length in the dataset is 200.92 mm.
 
@@ -31,24 +35,49 @@ mean(penguins$flipper_length_mm, na.rm = TRUE)
 
 - Make a scatterplot of `flipper_length_mm` (y) vs `bill_length_mm` (x); color points using the `species` variable:
 ```{r, warning=FALSE}
+
 library(ggplot2)
 ggplot(penguins, aes(x = bill_length_mm, y = flipper_length_mm, color =  species )) + geom_point()+
          labs(title = "Scatterplot of Flipper Length vs Bill Length", 
             x = "Bill Length (mm)", 
             y = "Flipper Length (mm)")
+
 ```
 
 - Export first scatterplot to project directory
 ```{r, warning=FALSE}
+
 ggsave("scatterplot_flipper_vs_bill.png", height = 4, width = 6)
+
 ```
 
 # Problem 2
-## Create data frame
-```{r results='hide'}
+
+## 2.1 Create data frame
+- The data frame should comprise of:
+  - a random sample of size 10 from a standard Normal distribution
+  - a logical vector indicating whether elements of the sample are greater than 0
+  - a character vector of length 10
+  - a factor vector of length 10, with 3 different factor “levels”
+
+```{r, results = 'hide', message = FALSE, warning = FALSE}
+library(tidyverse)
+```
+
+```{r}
+
+# define data frame containing required variables
+q2_df = tibble(
+  norm_samp = rnorm(10, mean = 0),
+  norm_samp_pos = norm_samp > 0,
+  vec_char = c("China", "USA", "Germany", "France", "Brazil","Japan", "Canada", "Australia", "India", "South Africa"),
+  vec_factor =factor(c("Moderate", "Light","Moderate", "Vigorous", "Light","Moderate", "Vigorous" ,"Light","Moderate", "Vigorous"))
+)
+# display the data frame
+q2_df
 
 ```
-## Take mean of each variable
+## 2.2 Take mean of each variable
 ```{r results='hide'}
 
 ```
