@@ -48,7 +48,7 @@ ggplot(penguins, aes(x = bill_length_mm, y = flipper_length_mm, color =  species
 ```
 
 ### 1.2.2 Export scatterplot 
-- Export first scatterplot to project directory
+Export first scatterplot to project directory
 ```{r, warning=FALSE}
 
 ggsave("scatterplot_flipper_vs_bill.png", height = 4, width = 6)
@@ -91,4 +91,15 @@ mean(q2_df %>% pull(norm_samp_pos))
 mean(q2_df %>% pull(vec_char))       
 mean(q2_df%>% pull(vec_factor))  
 ```
-**Findings**:The numeric variable(norm_samp) and logical variable(norm_samp_pos) can be used to take the mean while character vector and factor vector cannot and return NA.
+**Findings**: The numeric variable(norm_samp) and logical variable(norm_samp_pos) can be used to take the mean while character vector and factor vector cannot and return NA.
+
+### 2.2.2 Convert variables types into numeric
+```{r,results='hide'}
+
+as.numeric(q2_df$norm_samp)
+as.numeric(q2_df$norm_samp_pos)
+as.numeric(q2_df$vec_char)
+as.numeric(q2_df$vec_factor)
+
+```
+**Findings**: I noticed a warning, "NAs introduced by coercion," when attempting to convert a character vector to numeric using `as.numeric()`. However, this warning does not appear when converting other variable types. The reason is that character vectors are not numerical data and cannot be coerced into numeric form. As a result, `NA` values are generated during the conversion with `as.numeric()`. This helps explain why taking the mean of a character vector fails.
