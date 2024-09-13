@@ -1,0 +1,17 @@
+---
+title: "P8105_hw1 building block"
+output: github_document
+---
+Author: Minghui Wang, mw3743<br>
+Date: 2024-09-12
+
+# Problem 1
+
+```{r}
+
+```
+
+# Problem 2
+```{r results='hide'}
+
+```
