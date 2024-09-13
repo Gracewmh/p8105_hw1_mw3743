@@ -10,7 +10,7 @@ The purpose of this file is to complete the questions in [howework 1](https://p8
 # Problem 1
 
 ## 1.1 Describe the `penguins` dataset
-Write a short description of the penguins dataset using inline R code.<br> 
+### 1.1.1 Explore the `penguins` dataset
 ```{r}
 
 # Input data
@@ -28,15 +28,18 @@ mean(penguins$flipper_length_mm, na.rm = TRUE)
 
 ```
 
-**Description of the `penguins` dataset**
-- The penguins dataset consists of 344 rows and 8 columns. It contains data from penguins of three species, which are Adelie, Chinstrap, and Gentoo. Some important variables in the data are species, island(Biscoe, Dream, or Torgersen), bill_length_mm, bill_depth_mm, flipper_length_mm, body_mass_g, sex, year. The size of the penguins dataset is 344 rows and 8 columns. Additionally, the mean flipper length in the dataset is 200.92 mm.
+### 1.1.2 Description of the `penguins` dataset
+The penguins dataset consists of 344 rows and 8 columns. It contains data from penguins of three species, which are Adelie, Chinstrap, and Gentoo. Some important variables in the data are species, island(Biscoe, Dream, or Torgersen), bill_length_mm, bill_depth_mm, flipper_length_mm, body_mass_g, sex, year. The size of the penguins dataset is 344 rows and 8 columns. Additionally, the mean flipper length in the dataset is 200.92 mm.
 
 ## 1.2 Make scatterplot 
 
-- Make a scatterplot of `flipper_length_mm` (y) vs `bill_length_mm` (x); color points using the `species` variable:
+### 1.2.1 ggplot 2
+Make a scatterplot of `flipper_length_mm` (y) vs `bill_length_mm` (x); color points using the `species` variable:
 ```{r, warning=FALSE}
-
+#load package
 library(ggplot2)
+
+#make scatterplot
 ggplot(penguins, aes(x = bill_length_mm, y = flipper_length_mm, color =  species )) + geom_point()+
          labs(title = "Scatterplot of Flipper Length vs Bill Length", 
             x = "Bill Length (mm)", 
@@ -44,6 +47,7 @@ ggplot(penguins, aes(x = bill_length_mm, y = flipper_length_mm, color =  species
 
 ```
 
+### 1.2.2 Export scatterplot 
 - Export first scatterplot to project directory
 ```{r, warning=FALSE}
 
@@ -54,11 +58,11 @@ ggsave("scatterplot_flipper_vs_bill.png", height = 4, width = 6)
 # Problem 2
 
 ## 2.1 Create data frame
-- The data frame should comprise of:
-  - a random sample of size 10 from a standard Normal distribution
-  - a logical vector indicating whether elements of the sample are greater than 0
-  - a character vector of length 10
-  - a factor vector of length 10, with 3 different factor “levels”
+The data frame should comprise of:
+- a random sample of size 10 from a standard Normal distribution
+- a logical vector indicating whether elements of the sample are greater than 0
+- a character vector of length 10
+- a factor vector of length 10, with 3 different factor “levels”
 
 ```{r, results = 'hide', message = FALSE, warning = FALSE}
 library(tidyverse)
@@ -77,7 +81,14 @@ q2_df = tibble(
 q2_df
 
 ```
-## 2.2 Take mean of each variable
-```{r results='hide'}
 
+## 2.2 Take mean of each variable
+
+### 2.2.1 Pull and calculate mean
+```{r results='hide'}
+mean(q2_df %>% pull(norm_samp))      
+mean(q2_df %>% pull(norm_samp_pos))  
+mean(q2_df %>% pull(vec_char))       
+mean(q2_df%>% pull(vec_factor))  
 ```
+**Findings**:The numeric variable(norm_samp) and logical variable(norm_samp_pos) can be used to take the mean while character vector and factor vector cannot and return NA.
