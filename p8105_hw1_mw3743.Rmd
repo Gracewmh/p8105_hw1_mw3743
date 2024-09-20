@@ -96,10 +96,10 @@ mean(q2_df%>% pull(vec_factor))
 ### 2.2.2 Convert variables types into numeric
 ```{r,results='hide'}
 
-as.numeric(q2_df$norm_samp)
-as.numeric(q2_df$norm_samp_pos)
-as.numeric(q2_df$vec_char)
-as.numeric(q2_df$vec_factor)
+as.numeric(q2_df %>% pull(norm_samp))
+as.numeric(q2_df %>% pull(norm_samp_pos))
+as.numeric(q2_df %>% pull(vec_char))
+as.numeric(q2_df %>% pull(vec_factor))
 
 ```
 **Findings**: I noticed a warning, "NAs introduced by coercion," when attempting to convert a character vector to numeric using `as.numeric()`. However, this warning does not appear when converting other variable types. The reason is that character vectors are not numerical data and cannot be coerced into numeric form. As a result, `NA` values are generated during the conversion with `as.numeric()`. This helps explain why taking the mean of a character vector fails.
